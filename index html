@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高精度光軸安定化技術 (PAT) | 次世代宇宙通信ソリューション</title>
+    <style>
+        :root {
+            --primary-navy: #001f3f;
+            --accent-orange: #ff851b;
+            --text-white: #ffffff;
+            --bg-light: #f4f7f6;
+            --text-dark: #333333;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+        }
+        header {
+            background: var(--primary-navy);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header img.logo {
+            height: 40px;
+        }
+        nav a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #003366 100%);
+            color: var(--text-white);
+            padding: 80px 5%;
+            text-align: center;
+        }
+        .hero img.corp-logo {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #d1d1d1;
+        }
+        .section {
+            padding: 60px 10%;
+        }
+        .section:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+        .section-title {
+            color: var(--primary-navy);
+            border-left: 5px solid var(--accent-orange);
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .content img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        footer {
+            background: var(--primary-navy);
+            color: var(--text-white);
+            padding: 40px 5%;
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: opacity 0.3s;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="https://nakajimakan14550.github.io/home/">
+        <img src="logo.png" alt="Logo" class="logo">
+    </a>
+    <nav>
+        <a href="#contact">CONTACT US</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <img src="企業ロゴ.png" alt="Corporate Logo" class="corp-logo">
+    <h1>一線を画す、光軸の静寂。</h1>
+    <p>宇宙ミッションの過酷な環境下で、0.1マイクロラジアンの精度を保証するPAT（Pointing, Acquisition and Tracking）技術。</p>
+</section>
+
+<section class="section">
+    <div class="grid">
+        <div class="text">
+            <h2 class="section-title">高精度な光軸安定化</h2>
+            <p>宇宙デブリ対策やドローン迎撃システムなど、動的なターゲットに対するレーザー照射には極めて高い精度が求められます。当社のPAT機能は、長年の宇宙ミッション実績に基づき、外乱をキャンセルして正確な捕捉を実現します。</p>
+        </div>
+        <div class="content">
+            <img src="image1.png" alt="光軸安定化イメージ">
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="grid">
+        <div class="content">
+            <img src="image2.png" alt="宇宙通信技術">
+        </div>
+        <div class="text">
+            <h2 class="section-title">信頼性の高い宇宙通信</h2>
+            <p>光無線通信における最大のアドバンテージは高速性ですが、課題は大気揺らぎと振動です。独自の補正アルゴリズムにより、長距離におけるリンク安定性を飛躍的に高め、大容量データの確実な伝送を可能にします。</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="grid">
+        <div class="text">
+            <h2 class="section-title">自動化と運用の効率化</h2>
+            <p>複雑な光軸制御を完全自動化。ヒューマンエラーを排除し、地上局および衛星端局におけるオペレーションコストを大幅に削減します。24時間365日の安定稼働を、先進の制御ロジックが支えます。</p>
+        </div>
+        <div class="content">
+            <img src="image3.png" alt="自動制御システム">
+        </div>
+    </div>
+</section>
+
+<footer id="contact">
+    <p>© 2024 Optical Technology Solutions Inc. All Rights Reserved.</p>
+    <a href="#" class="btn">お問い合わせはこちら</a>
+</footer>
+
+</body>
+</html>
