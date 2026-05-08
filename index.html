@@ -289,7 +289,117 @@
     <h2 class="section-title">202X年の展望と対策：戦略的アプローチ</h2>
     <p>今後、高精度駆動技術は、宇宙・防衛のみならず、産業領域へも急速に波及します。技術者が注視すべき戦略的アプローチは以下の3点です。</p>
     
+   <style>
+    /* セクション全体のトーン */
+    .strategy-section {
+        background-color: #0a0a0a;
+        color: #e0e0e0;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        padding: 40px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    /* ロゴの白化：brightness(0) invert(1) で確実に白へ */
+    .hero img {
+        max-width: 200px;
+        filter: brightness(0) invert(1);
+        margin-bottom: 10px;
+    }
+
+    .tag-main {
+        color: #007aff;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin: 15px 0 40px 0;
+        line-height: 1.4;
+        border-left: 4px solid #007aff;
+        padding-left: 20px;
+    }
+
+    /* リスト構造 */
+    .strategy-item {
+        display: flex;
+        gap: 25px;
+        margin-bottom: 50px;
+        align-items: flex-start;
+    }
+
+    .strategy-num {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.1);
+        line-height: 1;
+        flex: 0 0 40px;
+    }
+
+    .strategy-content {
+        flex: 1;
+    }
+
+    .strategy-content strong {
+        display: block;
+        font-size: 1.2rem;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+
+    .strategy-layout {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .strategy-layout p {
+        flex: 1;
+        margin: 0;
+        line-height: 1.7;
+        font-size: 0.95rem;
+        color: #ccc;
+    }
+
+    /* 画像サイズの制御：ここが重要 */
+    .img-container {
+        flex: 0 0 180px; /* 画像の幅を180pxに固定 */
+    }
+
+    .image-box {
+        display: block;
+        width: 100%;
+        height: 110px; /* 高さを抑える */
+        overflow: hidden;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background: #1a1a1a;
+    }
+
+    .image-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 枠に合わせて綺麗に収める */
+        opacity: 0.8;
+        transition: opacity 0.3s;
+    }
+
+    .image-box:hover img {
+        opacity: 1;
+    }
+</style>
+
+<div class="strategy-section">
+    <div class="hero">
+        <img src="cedrat.png" alt="Cedrat">
+        <div><span class="tag-main">03. Future Strategy</span></div>
+        <h1>202X年の展望と対策：戦略的アプローチ</h1>
+    </div>
+
     <div class="strategy-list">
+        <!-- 01 -->
         <div class="strategy-item">
             <div class="strategy-num">1</div>
             <div class="strategy-content">
@@ -297,18 +407,15 @@
                 <div class="strategy-layout">
                     <p>超高速・短ストロークの「ピエゾ」と、広範囲をカバーする「磁気方式」を組み合わせ、状況に応じて使い分けるアーキテクチャへの転換。これにより、広範囲の追尾からピンポイントのロックオンまでをシームレスに行うことが可能になります。</p>
                     <div class="img-container">
-                        <input type="checkbox" id="zoom-strategy1" class="zoom-check">
-                        <label for="zoom-strategy1" class="image-box">
-                            <img src="hybrid-drive.png" alt="Hybrid Drive Concept">
-                        </label>
-                        <label for="zoom-strategy1" class="zoom-overlay">
-                            <img src="hybrid-drive.png" alt="Hybrid Drive Concept Expanded">
-                        </label>
+                        <div class="image-box">
+                            <img src="hybrid-drive.png" alt="Hybrid Drive">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- 02 -->
         <div class="strategy-item">
             <div class="strategy-num">2</div>
             <div class="strategy-content">
@@ -316,27 +423,31 @@
                 <div class="strategy-layout">
                     <p>ミラー素材にSiCを採用し、熱的安定性を担保した上で、フィードバック制御を高度化させる。物理的な限界を素材で補い、制御で追い込むという「ハードウェア・イン・ザ・ループ」の思想が不可欠となります。</p>
                     <div class="img-container">
-                        <input type="checkbox" id="zoom-strategy2" class="zoom-check">
-                        <label for="zoom-strategy2" class="image-box">
-                            <img src="material-control.png" alt="SiC Mirror Control">
-                        </label>
-                        <label for="zoom-strategy2" class="zoom-overlay">
-                            <img src="material-control.png" alt="SiC Mirror Control Expanded">
-                        </label>
+                        <div class="image-box">
+                            <img src="material-control.png" alt="Material Control">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- 03 -->
         <div class="strategy-item">
             <div class="strategy-num">3</div>
             <div class="strategy-content">
                 <strong>モジュール化による開発負荷の低減</strong>
-                <p>複雑な光軸安定化機構を個別にゼロから設計するのではなく、実績のある精密駆動モジュールを組み込むことで、市場投入までの期間を短縮する。差別化は機構設計そのものではなく、その「統合精度」に移行しています。</p>
+                <div class="strategy-layout">
+                    <p>複雑な光軸安定化機構を個別にゼロから設計するのではなく、実績のある精密駆動モジュールを組み込むことで、市場投入までの期間を短縮する。差別化は機構設計そのものではなく、その「統合精度」に移行しています。</p>
+                    <div class="img-container">
+                        <div class="image-box">
+                            <!-- 3つ目の画像が必要な場合はここに記述 -->
+                            <img src="module-integration.png" alt="Module Integration">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</section>
 </div>
 
 <footer>
