@@ -10,7 +10,7 @@
             --primary: #0f172a;      /* 深みのあるネイビー */
             --primary-light: #1e293b;
             --accent: #f97316;       /* 先進のオレンジ */
-            --bg: #f1f5f9;           /* 落ち着いた背景色 */
+            --bg: #f8fafc;           /* 清潔感のある背景色 */
             --card-bg: #ffffff;
             --text-main: #334155;
             --text-muted: #64748b;
@@ -30,280 +30,283 @@
         /* Navigation */
         header {
             background: var(--primary);
-            padding: 0.8rem 5%;
+            padding: 1rem 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
-        .logo img { height: 40px; transition: transform 0.3s; }
-        .logo img:hover { transform: scale(1.05); }
+        .logo img { height: 35px; }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)), url('hero-bg.jpg') center/cover;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: var(--white);
-            padding: 120px 10%;
+            padding: 80px 10% 100px;
             text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
         }
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 24px;
+            font-size: 2.8rem;
+            margin-top: 20px;
             font-weight: 800;
-            line-height: 1.4;
-            letter-spacing: -0.02em;
+            line-height: 1.3;
         }
-        .hero .summary-tags {
+        .tag-main {
+            background: var(--accent);
+            color: white;
+            padding: 4px 15px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-radius: 4px;
+        }
+        .summary-tags {
             display: flex;
             justify-content: center;
             gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 40px;
+            margin-top: 30px;
         }
-        .tag {
-            background: rgba(249, 115, 22, 0.15);
-            border: 1px solid var(--accent);
-            padding: 8px 24px;
+        .tag-sub {
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 5px 20px;
             border-radius: 50px;
-            font-size: 0.95rem;
-            backdrop-filter: blur(4px);
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.05);
         }
 
         /* Main Content */
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 5%; }
+        .container { max-width: 1100px; margin: -40px auto 0; padding: 0 5% 80px; }
         
         section { 
             background: var(--card-bg);
             padding: 50px;
-            border-radius: 20px;
-            margin-bottom: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
         .section-label {
             color: var(--accent);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            font-weight: bold;
+            letter-spacing: 2px;
             display: block;
-            margin-bottom: 15px;
-            font-size: 0.85rem;
+            margin-bottom: 10px;
         }
         .section-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: var(--primary);
-            margin-bottom: 35px;
-            font-weight: 700;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent);
+            padding-left: 20px;
         }
 
-        /* Technical Content Cards */
         .tech-grid {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
-            gap: 50px;
+            gap: 40px;
             align-items: flex-start;
         }
-        .content-body p { margin-bottom: 25px; text-align: justify; font-size: 1.05rem; }
 
-        /* ホバーズーム画像ボックス */
+        /* --- 画像クリック拡大（Lightbox）の実装 --- */
+        .img-container {
+            position: relative;
+        }
+        /* チェックボックスを隠す */
+        .zoom-check { display: none; }
+
+        /* 画像の外観 */
         .image-box {
-            position: relative;
-            background: #f8fafc;
-            border-radius: 16px;
-            overflow: hidden; /* 拡大時のはみ出しを防ぐ */
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-        .image-box img { 
-            width: 100%; 
-            display: block; 
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 滑らかな拡大アニメーション */
             cursor: zoom-in;
-        }
-        /* ホバー時に画像を拡大 */
-        .image-box:hover img {
-            transform: scale(1.15);
-        }
-        
-        .caption {
-            padding: 15px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-align: center;
-            background: var(--white);
-            border-top: 1px solid #f1f5f9;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Highlight Box */
-        .highlight-card {
-            background: var(--primary-light);
-            color: var(--white);
-            padding: 40px;
-            border-radius: 16px;
-            margin-bottom: 40px;
-            border-left: 10px solid var(--accent);
-        }
-        .highlight-card h3 { color: var(--accent); margin-top: 0; font-size: 1.5rem; }
-
-        /* Strategy List */
-        .strategy-list { display: grid; gap: 20px; }
-        .strategy-item {
-            background: #f8fafc;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            display: flex;
-            gap: 25px;
-            transition: all 0.3s ease;
-        }
-        .strategy-item:hover { 
-            background: var(--white);
-            transform: translateX(10px); 
-            border-color: var(--accent);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-        .strategy-num {
-            background: var(--primary);
-            color: white;
-            width: 40px;
-            height: 40px;
             border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            display: block;
+            transition: 0.3s;
+        }
+        .image-box:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .image-box img { width: 100%; display: block; }
+
+        /* クリックされた時の全画面オーバーレイ */
+        .zoom-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            font-weight: 800;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            cursor: zoom-out;
         }
-        .strategy-item strong { display: block; font-size: 1.2rem; margin-bottom: 8px; color: var(--primary); }
+        .zoom-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            transform: scale(0.8);
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        /* チェックが入ったら表示 */
+        .zoom-check:checked ~ .zoom-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+        .zoom-check:checked ~ .zoom-overlay img {
+            transform: scale(1);
+        }
+
+        /* バツ印の代わり（右上に配置） */
+        .zoom-overlay::after {
+            content: "\f00d";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 30px; right: 40px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .caption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Strategy List */
+        .strategy-item {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            border-bottom: 1px solid #f1f5f9;
+            transition: 0.3s;
+        }
+        .strategy-item:hover { background: #f8fafc; }
+        .strategy-num {
+            background: var(--primary);
+            color: white;
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-weight: bold;
+        }
 
         /* Footer */
         footer {
             background: var(--primary);
             color: white;
-            padding: 100px 5% 50px;
-            margin-top: 50px;
+            padding: 80px 5%;
+            text-align: center;
         }
-        .footer-content { max-width: 900px; margin: 0 auto; text-align: center; }
         .btn-contact {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
+            display: inline-block;
             background: var(--accent);
             color: white;
-            padding: 20px 50px;
-            border-radius: 50px;
+            padding: 18px 40px;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1rem;
-            margin: 40px 0;
-            transition: all 0.3s;
-            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
+            margin: 30px 0;
+            transition: 0.3s;
         }
-        .btn-contact:hover { background: #ea580c; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(249, 115, 22, 0.5); }
-        .footer-info { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 60px; }
-        .contact-grid { display: flex; justify-content: center; gap: 40px; margin: 25px 0; color: #94a3b8; }
-        .company-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; color: var(--white); }
-        
-        @media (max-width: 950px) {
+        .btn-contact:hover { background: #ea580c; transform: scale(1.05); }
+
+        @media (max-width: 850px) {
             .tech-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.2rem; }
-            section { padding: 30px; }
+            .hero h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="https://nakajimakan14550.github.io/home/" class="logo">
-        <img src="logo.png" alt="CHRONIX">
-    </a>
+    <a href="#" class="logo"><img src="logo.png" alt="CHRONIX"></a>
 </header>
 
 <div class="hero">
-    <div style="margin-bottom: 30px;">
-        <img src="cedrat.png" alt="Cedrat Technologies" style="max-width: 300px; height: auto; filter: brightness(0) invert(1);">
-    </div>
-
-    <span class="tag">INDUSTRY REPORT 2026</span>
-    <h1>深宇宙と地上を結ぶ「一筋の光」を固定せよ<br>高精度FSMと超高速ステアリングの到達点</h1>
+    <img src="cedrat.png" alt="Cedrat" style="max-width: 250px; filter: brightness(0) invert(1);">
+    <div style="margin-top: 20px;"><span class="tag-main">ENGINEERING REPORT 2026</span></div>
+    <h1>深宇宙と地上を結ぶ「一筋の光」を固定せよ<br>Cedratが実現する宇宙用高精度FSMの極致</h1>
     
     <div class="summary-tags">
-        <span class="tag"><i class="fas fa-rocket"></i> 耐宇宙環境 Qualified</span>
-        <span class="tag"><i class="fas fa-bullseye"></i> 0.1µrad級 指向精度</span>
-        <span class="tag"><i class="fas fa-wave-square"></i> 高応答・広帯域駆動</span>
+        <span class="tag-sub"><i class="fas fa-rocket"></i> Space Qualified</span>
+        <span class="tag-sub"><i class="fas fa-bullseye"></i> 0.1µrad Precision</span>
+        <span class="tag-sub"><i class="fas fa-bolt"></i> High Response</span>
     </div>
 </div>
 
 <div class="container">
     
-    <section id="market-analysis">
-        <span class="section-label">01. Market Analysis</span>
-        <h2 class="section-title">市場分析：光通信シフトにおける物理的障壁</h2>
+    <section id="analysis">
+        <span class="section-label">01. MARKET TREND</span>
+        <h2 class="section-title">光通信シフトにおけるPAT機能の重要性</h2>
         <div class="tech-grid">
             <div class="content-body">
-                <p>現在、宇宙通信および高精度レーザー計測の分野では、従来の電波通信から<strong>「光通信（Free Space Optics）」</strong>へのシフトが急速に進んでいます。しかし、この技術の普及を阻む最大の障壁は、情報の伝送速度ではなく、数千キロ先から飛来するレーザーを数マイクロラジアンの精度で捉え続ける<strong>「PAT（Pointing, Acquisition, and Tracking）」機能</strong>の安定性にあります。</p>
-                <p>宇宙デブリ対策や衛星間通信において、プラットフォームの微細な振動は致命的なノイズとなります。これに対し、ピエゾ素子の変形を拡大する<strong>「APA（Amplified Piezo Actuator）」</strong>は、現在の世界標準ソリューションとして不可欠な存在となっています。</p>
+                <p>宇宙通信における最大の技術的挑戦は、情報の伝送速度ではなく、数千キロ先から飛来するレーザーを数マイクロラジアンの精度で捉え続ける<strong>「PAT（指向・補足・追尾）」機能</strong>の安定化にあります。</p>
+                <p>プラットフォームの微細な振動をキャンセルし、光軸を固定するために、ピエゾの微細変位を拡大するAPA®技術が不可欠となっています。</p>
             </div>
 
-            <div class="image-box">
-                <img src="fsm.png" alt="PAT System Architecture">
-                <div class="caption">図1：遠距離レーザー通信におけるPAT機能の概念図（マウスを重ねて拡大）</div>
+            <div class="img-container">
+                <input type="checkbox" id="zoom1" class="zoom-check">
+                <label for="zoom1" class="image-box">
+                    <img src="fsm.png" alt="PAT System">
+                </label>
+                <label for="zoom1" class="zoom-overlay">
+                    <img src="fsm.png" alt="PAT System Expanded">
+                </label>
+                <div class="caption">図1：PAT機能のシステム構成（クリックで拡大）</div>
             </div>
         </div>
     </section>
 
     <section id="challenges">
-        <span class="section-label">02. Critical Challenges</span>
-        <h2 class="section-title">静かなる課題：熱変位とジッターの相関</h2>
-        
-        <div class="highlight-card">
-            <h3>エンジニアが見落としがちな物理的限界</h3>
-            <p>センサーのスペックは重視されますが、それらを駆動する機構の剛性不足が精度低下を招いています。特に<strong>SiC（炭化ケイ素）</strong>のような高剛性素材をいかにサブマイクロ単位で制御するかという視点が、次世代設計の鍵となります。</p>
-        </div>
-        
+        <span class="section-label">02. CRITICAL ISSUES</span>
+        <h2 class="section-title">物理的限界：熱変位とジッター</h2>
         <div class="tech-grid">
-            <div class="image-box">
-                <img src="fsm2.png" alt="Thermal Drift Analysis">
-                <div class="caption">図2：温度変化に伴う光軸ドリフトのシミュレーション（マウスを重ねて拡大）</div>
+            <div class="img-container">
+                <input type="checkbox" id="zoom2" class="zoom-check">
+                <label for="zoom2" class="image-box">
+                    <img src="fsm2.png" alt="Thermal Analysis">
+                </label>
+                <label for="zoom2" class="zoom-overlay">
+                    <img src="fsm2.png" alt="Thermal Analysis Expanded">
+                </label>
+                <div class="caption">図2：温度変化による光軸ドリフト（クリックで拡大）</div>
             </div>
-            
+
             <div class="content-body">
-                <p>「通信が繋がらない」原因の多くは、実はソフトウェアではなく、<strong>物理駆動系における微小なドリフト</strong>にあります。長距離照射においてこのジッターは増幅され、ターゲット到達精度を劇的に悪化させます。この物理的特性への理解が、今まさに求められています。</p>
+                <p>多くのエンジニアがソフトウェアでの補正を試みますが、物理駆動部における<strong>熱膨張とメカニカルジッター</strong>こそが真のボトルネックです。SiC（炭化ケイ素）ミラー等の次世代素材と、高剛性アクチュエータの統合設計が解決の鍵となります。</p>
             </div>
         </div>
     </section>
 
     <section id="strategy">
-        <span class="section-label">03. Future Strategy</span>
-        <h2 class="section-title">202X年の展望：精密駆動の戦略的アプローチ</h2>
-        
+        <span class="section-label">03. STRATEGY</span>
+        <h2 class="section-title">202X年 開発戦略の3本柱</h2>
         <div class="strategy-list">
             <div class="strategy-item">
-                <div class="strategy-num">01</div>
+                <div class="strategy-num">1</div>
                 <div>
-                    <strong>ハイブリッド駆動の導入</strong>
-                    <p>超高速・短ストロークの「ピエゾ」と、広範囲をカバーする「磁気方式」を組み合わせたハイブリッド・アーキテクチャへの転換が加速します。</p>
+                    <strong>ハイブリッド駆動アーキテクチャ</strong>
+                    <p>ピエゾの高速応答と、磁気駆動の広ストロークを融合させた制御系へのシフト。</p>
                 </div>
             </div>
             <div class="strategy-item">
-                <div class="strategy-num">02</div>
+                <div class="strategy-num">2</div>
                 <div>
-                    <strong>素材と制御の高度な統合</strong>
-                    <p>SiCミラーの採用と高度なフィードバック制御を組み合わせた「ハードウェア・イン・ザ・ループ」の思想が、開発のデファクトスタンダードとなります。</p>
+                    <strong>素材特性の徹底活用</strong>
+                    <p>SiCや低熱膨張合金を用いた「剛な」オプトメカニズムの構築。</p>
                 </div>
             </div>
             <div class="strategy-item">
-                <div class="strategy-num">03</div>
+                <div class="strategy-num">3</div>
                 <div>
-                    <strong>モジュール化による開発加速</strong>
-                    <p>差別化のポイントは機構設計そのものではなく、実績のあるモジュールをいかに素早く「統合・最適化」するかに移行しています。</p>
+                    <strong>既証モジュールの統合</strong>
+                    <p>ゼロからの設計を避け、実績あるFSMモジュールを活用して開発スピードを最大化。</p>
                 </div>
             </div>
         </div>
@@ -313,26 +316,12 @@
 
 <footer>
     <div class="footer-content">
-        <img src="logo.png" alt="CHRONIX" style="height: 55px; margin-bottom: 30px; filter: brightness(0) invert(1);">
-        <p style="font-size: 1.2rem; color: #cbd5e1; font-weight: 300; max-width: 700px; margin: 0 auto; line-height: 1.6;">
-            センサーのポテンシャルを100%引き出す<br>精密光学系との統合設計をサポートします。
+        <img src="logo.png" alt="CHRONIX" style="height: 50px; filter: brightness(2);">
+        <p style="margin-top: 20px; color: #94a3b8;">
+            精密光学系と駆動機構の統合設計を専門エンジニアがサポートします。
         </p>
-        
-        <a href="mailto:sales@chronix.co.jp" class="btn-contact">
-            <i class="fas fa-paper-plane"></i> 技術相談窓口へ問い合わせる
-        </a>
-
-        <div class="footer-info">
-            <p class="company-name">クロニクス株式会社</p>
-            <address style="font-style: normal; color: #64748b; font-size: 0.95rem;">
-                <p>〒160-0023 東京都新宿区西新宿3-2-11 新宿三井ビルディング二号館 904室</p>
-                <div class="contact-grid">
-                    <span><strong style="color: #94a3b8;">TEL</strong> 03-5322-7191</span>
-                    <span><strong style="color: #94a3b8;">FAX</strong> 03-5322-7790</span>
-                </div>
-            </address>
-        </div>
-        <p style="margin-top: 50px; font-size: 0.75rem; color: #475569; letter-spacing: 1px;">© 2026 CHRONIX. All Rights Reserved.</p>
+        <a href="mailto:sales@chronix.co.jp" class="btn-contact">技術相談・資料請求</a>
+        <p style="font-size: 0.8rem; color: #475569;">© 2026 CHRONIX. All Rights Reserved.</p>
     </div>
 </footer>
 
