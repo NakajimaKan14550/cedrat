@@ -1,63 +1,110 @@
-<section id="strategy">
-    <span class="section-label">03. Future Strategy</span>
-    <h2 class="section-title">202X年の展望と対策：戦略的アプローチ</h2>
-    <p style="margin-bottom: 30px;">今後、高精度駆動技術は宇宙・防衛のみならず、産業領域へも波及します。技術者が注視すべき戦略的アプローチは以下の3点です。</p>
-
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>次世代精密駆動と光軸制御の最前線 | CHRONIX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* レイアウト修正 */
-        .strategy-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        :root {
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #f97316;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --white: #ffffff;
         }
 
-        .strategy-item {
+        * { box-sizing: border-box; }
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+            line-height: 1.8;
+            color: var(--text-main);
+            background-color: var(--bg);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        header {
+            background: var(--primary);
+            padding: 1rem 5%;
             display: flex;
-            gap: 25px;
-            padding: 30px;
-            background: #f8fafc;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-logo { height: 35px; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 80px 10% 100px;
+            text-align: center;
+        }
+        .hero-logo-cedrat {
+            max-width: 250px;
+            filter: brightness(0) invert(1);
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            margin: 20px 0;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+        .tag-main {
+            background: var(--accent);
+            color: white;
+            padding: 4px 15px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-radius: 4px;
+        }
+
+        /* Main Container */
+        .container { max-width: 1100px; margin: -40px auto 0; padding: 0 5% 80px; }
+        
+        section { 
+            background: var(--card-bg);
+            padding: 50px;
             border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0;
+        }
+
+        .section-label {
+            color: var(--accent);
+            font-weight: bold;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        /* Grid Layout */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
             align-items: flex-start;
         }
 
-        .strategy-num {
-            background: #0f172a;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .strategy-content { flex: 1; }
-        .strategy-content strong {
-            display: block;
-            font-size: 1.2rem;
-            color: #0f172a;
-            margin-bottom: 10px;
-        }
-
-        .strategy-layout {
-            display: grid;
-            grid-template-columns: 1fr 200px; /* テキストと画像の比率 */
-            gap: 20px;
-            align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .strategy-layout { grid-template-columns: 1fr; }
-            .img-container { max-width: 200px; }
-        }
-
-        /* --- クリック拡大（Lightbox）の実装 --- */
+        /* --- Click to Zoom (CSS Lightbox) Logic --- */
         .img-container { position: relative; }
-        .zoom-check { display: none; } /* チェックボックスを隠す */
+        .zoom-check { display: none; } /* Hide Checkbox */
 
         .image-box {
             cursor: zoom-in;
@@ -65,36 +112,34 @@
             overflow: hidden;
             border: 1px solid #cbd5e1;
             display: block;
-            transition: transform 0.3s ease;
+            transition: 0.3s;
         }
-        .image-box:hover { transform: scale(1.02); }
-        .image-box img { width: 100%; height: auto; display: block; }
+        .image-box:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .image-box img { width: 100%; display: block; }
 
-        /* 全画面オーバーレイ */
+        /* Overlay */
         .zoom-overlay {
             position: fixed;
             top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: rgba(15, 23, 42, 0.98);
+            width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.96);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: 0.3s;
             cursor: zoom-out;
         }
-
         .zoom-overlay img {
             max-width: 90%;
-            max-height: 85%;
-            transform: scale(0.9);
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border: 2px solid rgba(255,255,255,0.1);
+            max-height: 90%;
+            transform: scale(0.8);
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* チェックが入ったら全画面表示 */
+        /* Show when checked */
         .zoom-check:checked ~ .zoom-overlay {
             opacity: 1;
             visibility: visible;
@@ -102,78 +147,170 @@
         .zoom-check:checked ~ .zoom-overlay img {
             transform: scale(1);
         }
-
-        /* 閉じるボタン風のガイド */
         .zoom-overlay::after {
             content: "✕ CLOSE";
             position: absolute;
-            top: 30px; right: 30px;
+            top: 25px; right: 35px;
             color: white;
+            font-size: 1rem;
             font-weight: bold;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
             border: 1px solid white;
             padding: 5px 15px;
-            border-radius: 4px;
+        }
+
+        .caption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Strategy List */
+        .strategy-list { display: flex; flex-direction: column; gap: 20px; }
+        .strategy-item {
+            display: flex; gap: 25px; padding: 30px;
+            background: #f8fafc; border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .strategy-num {
+            background: var(--primary); color: white;
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-weight: bold; font-size: 1.2rem;
+        }
+        .strategy-content strong {
+            display: block; font-size: 1.2rem; color: var(--primary); margin-bottom: 15px;
+        }
+        .strategy-layout {
+            display: grid; grid-template-columns: 1fr 200px; gap: 20px; align-items: start;
+        }
+
+        /* Footer */
+        footer { background: var(--primary); color: white; padding: 80px 5%; text-align: center; }
+        .footer-logo { height: 50px; filter: brightness(0) invert(1); margin-bottom: 25px; }
+        .btn-contact {
+            display: inline-block; background: var(--accent); color: white;
+            padding: 18px 40px; border-radius: 4px; text-decoration: none;
+            font-weight: bold; margin: 30px 0; transition: 0.3s;
+        }
+        .btn-contact:hover { background: #ea580c; transform: scale(1.05); }
+
+        @media (max-width: 850px) {
+            .tech-grid, .strategy-layout { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.8rem; }
         }
     </style>
+</head>
+<body>
 
-    <div class="strategy-list">
-        <div class="strategy-item">
-            <div class="strategy-num">1</div>
-            <div class="strategy-content">
-                <strong>ハイブリッド駆動の導入</strong>
-                <div class="strategy-layout">
-                    <p>超高速・短ストロークの「ピエゾ」と、広範囲をカバーする「磁気方式」を組み合わせ、状況に応じて使い分けるアーキテクチャへの転換。これにより、広範囲の追尾からピンポイントのロックオンまでをシームレスに行うことが可能になります。</p>
-                    <div class="img-container">
-                        <input type="checkbox" id="strat-zoom1" class="zoom-check">
-                        <label for="strat-zoom1" class="image-box">
-                            <img src="hybrid-drive.png" alt="Hybrid Drive Concept">
-                        </label>
-                        <label for="strat-zoom1" class="zoom-overlay">
-                            <img src="hybrid-drive.png" alt="Hybrid Drive Concept Expanded">
-                        </label>
+<header>
+    <a href="https://nakajimakan14550.github.io/home/">
+        <img src="logo.png" alt="CHRONIX" class="header-logo">
+    </a>
+</header>
+
+<div class="hero">
+    <img src="cedrat.png" alt="Cedrat" class="hero-logo-cedrat">
+    <div><span class="tag-main">ENGINEERING REPORT 2026</span></div>
+    <h1>深宇宙と地上を結ぶ「一筋の光」を固定せよ<br>Cedratが実現する宇宙用高精度FSMの極致</h1>
+</div>
+
+<div class="container">
+    
+    <section>
+        <span class="section-label">01. MARKET TREND</span>
+        <h2 class="section-title">光通信シフトにおけるPAT機能の重要性</h2>
+        <div class="tech-grid">
+            <div class="content-body">
+                <p>宇宙通信における最大の技術的挑戦は、速度ではなく、数千キロ先から飛来するレーザーを数マイクロラジアンの精度で捉え続ける<strong>「PAT（指向・補足・追尾）」機能</strong>の安定性にあります。</p>
+                <p>プラットフォームの微細な振動をキャンセルし、光軸を固定するために、ピエゾの微細変位を拡大するAPA®技術が不可欠となっています。</p>
+            </div>
+            <div class="img-container">
+                <input type="checkbox" id="zoom1" class="zoom-check">
+                <label for="zoom1" class="image-box"><img src="fsm.png" alt="PAT System"></label>
+                <label for="zoom1" class="zoom-overlay"><img src="fsm.png" alt="Zoomed"></label>
+                <div class="caption">図1：PAT機能のシステム構成（クリックで拡大）</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <span class="section-label">02. CRITICAL CHALLENGES</span>
+        <h2 class="section-title">物理的限界：熱変位とジッター</h2>
+        <div class="tech-grid">
+            <div class="img-container">
+                <input type="checkbox" id="zoom2" class="zoom-check">
+                <label for="zoom2" class="image-box"><img src="fsm2.png" alt="Thermal"></label>
+                <label for="zoom2" class="zoom-overlay"><img src="fsm2.png" alt="Zoomed"></label>
+                <div class="caption">図2：温度変化による光軸ドリフト（クリックで拡大）</div>
+            </div>
+            <div class="content-body">
+                <p>ソフトウェアでの補正には限界があります。物理駆動部における<strong>熱膨張とメカニカルジッター</strong>こそが真のボトルネックです。SiC（炭化ケイ素）ミラー等の次世代素材と、高剛性アクチュエータの統合設計が解決の鍵となります。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="strategy">
+        <span class="section-label">03. Future Strategy</span>
+        <h2 class="section-title">202X年の展望と対策：戦略的アプローチ</h2>
+        <div class="strategy-list">
+            
+            <div class="strategy-item">
+                <div class="strategy-num">1</div>
+                <div class="strategy-content">
+                    <strong>ハイブリッド駆動の導入</strong>
+                    <div class="strategy-layout">
+                        <p>超高速・短ストロークの「ピエゾ」と、広範囲をカバーする「磁気方式」を組み合わせ、状況に応じて使い分ける転換。広範囲の追尾からピンポイントのロックオンまでをシームレスに行います。</p>
+                        <div class="img-container">
+                            <input type="checkbox" id="zoom-s1" class="zoom-check">
+                            <label for="zoom-s1" class="image-box"><img src="hybrid-drive.png" alt="Hybrid"></label>
+                            <label for="zoom-s1" class="zoom-overlay"><img src="hybrid-drive.png" alt="Zoomed"></label>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="strategy-item">
-            <div class="strategy-num">2</div>
-            <div class="strategy-content">
-                <strong>素材と制御の統合</strong>
-                <div class="strategy-layout">
-                    <p>ミラー素材にSiCを採用し、熱的安定性を担保した上で、フィードバック制御を高度化させる。物理的な限界を素材で補い、制御で追い込むという「ハードウェア・イン・ザ・ループ」の思想が不可欠となります。</p>
-                    <div class="img-container">
-                        <input type="checkbox" id="strat-zoom2" class="zoom-check">
-                        <label for="strat-zoom2" class="image-box">
-                            <img src="material-control.png" alt="SiC Material Control">
-                        </label>
-                        <label for="strat-zoom2" class="zoom-overlay">
-                            <img src="material-control.png" alt="SiC Material Control Expanded">
-                        </label>
+            <div class="strategy-item">
+                <div class="strategy-num">2</div>
+                <div class="strategy-content">
+                    <strong>素材と制御の統合</strong>
+                    <div class="strategy-layout">
+                        <p>SiCミラーを採用し、熱的安定性を担保した上で、フィードバック制御を高度化させる。「ハードウェア・イン・ザ・ループ」の思想により、素材の限界を制御で追い込みます。</p>
+                        <div class="img-container">
+                            <input type="checkbox" id="zoom-s2" class="zoom-check">
+                            <label for="zoom-s2" class="image-box"><img src="material-control.png" alt="Material"></label>
+                            <label for="zoom-s2" class="zoom-overlay"><img src="material-control.png" alt="Zoomed"></label>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="strategy-item">
-            <div class="strategy-num">3</div>
-            <div class="strategy-content">
-                <strong>モジュール化による開発負荷の低減</strong>
-                <div class="strategy-layout">
-                    <p>複雑な光軸安定化機構を個別にゼロから設計するのではなく、実績のある精密駆動モジュールを組み込むことで、市場投入までの期間を短縮する。差別化は機構設計そのものではなく、その「統合精度」に移行しています。</p>
-                    <div class="img-container">
-                        <input type="checkbox" id="strat-zoom3" class="zoom-check">
-                        <label for="strat-zoom3" class="image-box">
-                            <img src="module-integration.png" alt="Module Integration">
-                        </label>
-                        <label for="strat-zoom3" class="zoom-overlay">
-                            <img src="module-integration.png" alt="Module Integration Expanded">
-                        </label>
+            <div class="strategy-item">
+                <div class="strategy-num">3</div>
+                <div class="strategy-content">
+                    <strong>モジュール化による開発負荷の低減</strong>
+                    <div class="strategy-layout">
+                        <p>複雑な機構をゼロから設計するのではなく、実績のある精密駆動モジュールを組み込むことで、市場投入までの期間を短縮。差別化は「統合精度」に移行しています。</p>
+                        <div class="img-container">
+                            <input type="checkbox" id="zoom-s3" class="zoom-check">
+                            <label for="zoom-s3" class="image-box"><img src="module-integration.png" alt="Module"></label>
+                            <label for="zoom-s3" class="zoom-overlay"><img src="module-integration.png" alt="Zoomed"></label>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
-    </div>
-</section>
+    </section>
+
+</div>
+
+<footer>
+    <img src="logo.png" alt="CHRONIX" class="footer-logo">
+    <p>精密光学系と駆動機構の統合設計を専門エンジニアがサポートします。</p>
+    <a href="mailto:sales@chronix.co.jp" class="btn-contact">技術相談・資料請求</a>
+    <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 40px;">© 2026 CHRONIX. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
