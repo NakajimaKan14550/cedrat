@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #091a2d;      /* 信頼のネイビー */
-            --primary-light: #162a3e;
+            --primary: #0f172a;      /* 深みのあるネイビー */
+            --primary-light: #1e293b;
             --accent: #f97316;       /* 先進のオレンジ */
-            --bg: #f8fafc;           /* 清潔感のある背景 *
+            --bg: #f1f5f9;           /* 落ち着いた背景色 */
             --card-bg: #ffffff;
-            --text-main: #1e293b;
+            --text-main: #334155;
             --text-muted: #64748b;
             --white: #ffffff;
         }
@@ -30,97 +30,115 @@
         /* Navigation */
         header {
             background: var(--primary);
-            padding: 1rem 5%;
+            padding: 0.8rem 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
-        .logo img { height: 45px; transition: transform 0.3s; }
+        .logo img { height: 40px; transition: transform 0.3s; }
         .logo img:hover { transform: scale(1.05); }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(9, 26, 45, 0.85), rgba(9, 26, 45, 0.85)), url('hero-bg.jpg') center/cover;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)), url('hero-bg.jpg') center/cover;
             color: var(--white);
-            padding: 100px 10%;
+            padding: 120px 10%;
             text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
         }
         .hero h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin-bottom: 24px;
             font-weight: 800;
-            line-height: 1.3;
+            line-height: 1.4;
+            letter-spacing: -0.02em;
         }
         .hero .summary-tags {
             display: flex;
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 40px;
         }
         .tag {
-            background: rgba(249, 115, 22, 0.2);
+            background: rgba(249, 115, 22, 0.15);
             border: 1px solid var(--accent);
-            padding: 5px 20px;
+            padding: 8px 24px;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            backdrop-filter: blur(4px);
         }
 
         /* Main Content */
-        .container { max-width: 1100px; margin: 0 auto; padding: 60px 5%; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 5%; }
         
-        section { margin-bottom: 80px; }
+        section { 
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
         .section-label {
             color: var(--accent);
-            font-weight: bold;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
         }
         .section-title {
             font-size: 2.2rem;
             color: var(--primary);
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--accent);
+            margin-bottom: 35px;
+            font-weight: 700;
         }
 
         /* Technical Content Cards */
         .tech-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: flex-start;
         }
-        .content-body p { margin-bottom: 20px; text-align: justify; }
+        .content-body p { margin-bottom: 25px; text-align: justify; font-size: 1.05rem; }
 
+        /* ホバーズーム画像ボックス */
         .image-box {
-            background: #e2e8f0;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            position: relative;
+            background: #f8fafc;
+            border-radius: 16px;
+            overflow: hidden; /* 拡大時のはみ出しを防ぐ */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
         }
-        .image-box img { width: 100%; display: block; }
+        .image-box img { 
+            width: 100%; 
+            display: block; 
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 滑らかな拡大アニメーション */
+            cursor: zoom-in;
+        }
+        /* ホバー時に画像を拡大 */
+        .image-box:hover img {
+            transform: scale(1.15);
+        }
+        
         .caption {
             padding: 15px;
             font-size: 0.85rem;
             color: var(--text-muted);
             text-align: center;
-            background: #f1f5f9;
+            background: var(--white);
+            border-top: 1px solid #f1f5f9;
+            position: relative;
+            z-index: 2;
         }
 
         /* Highlight Box */
@@ -129,69 +147,74 @@
             color: var(--white);
             padding: 40px;
             border-radius: 16px;
-            margin: 40px 0;
-            border-left: 8px solid var(--accent);
+            margin-bottom: 40px;
+            border-left: 10px solid var(--accent);
         }
-        .highlight-card h3 { color: var(--accent); margin-top: 0; }
+        .highlight-card h3 { color: var(--accent); margin-top: 0; font-size: 1.5rem; }
 
         /* Strategy List */
-        .strategy-list {
-            list-style: none;
-            padding: 0;
-        }
+        .strategy-list { display: grid; gap: 20px; }
         .strategy-item {
-            background: var(--white);
-            padding: 25px;
-            margin-bottom: 15px;
-            border-radius: 8px;
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 12px;
             border: 1px solid #e2e8f0;
             display: flex;
-            gap: 20px;
-            transition: transform 0.3s;
+            gap: 25px;
+            transition: all 0.3s ease;
         }
-        .strategy-item:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .strategy-item:hover { 
+            background: var(--white);
+            transform: translateX(10px); 
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
         .strategy-num {
-            background: var(--accent);
+            background: var(--primary);
             color: white;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            font-weight: bold;
+            font-weight: 800;
         }
+        .strategy-item strong { display: block; font-size: 1.2rem; margin-bottom: 8px; color: var(--primary); }
 
         /* Footer */
         footer {
             background: var(--primary);
             color: white;
-            padding: 80px 5% 40px;
-            text-align: center;
+            padding: 100px 5% 50px;
+            margin-top: 50px;
         }
-        .footer-content { max-width: 900px; margin: 0 auto; }
+        .footer-content { max-width: 900px; margin: 0 auto; text-align: center; }
         .btn-contact {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             background: var(--accent);
             color: white;
-            padding: 18px 45px;
-            border-radius: 4px;
+            padding: 20px 50px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1rem;
-            margin: 30px 0;
+            margin: 40px 0;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
         }
-        .btn-contact:hover { background: #ea580c; transform: translateY(-2px); }
-        .footer-info { margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; }
-        .contact-grid { display: flex; justify-content: center; gap: 40px; margin: 20px 0; }
-        .company-name { font-size: 1.3rem; font-weight: bold; margin-bottom: 5px; }
+        .btn-contact:hover { background: #ea580c; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(249, 115, 22, 0.5); }
+        .footer-info { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 60px; }
+        .contact-grid { display: flex; justify-content: center; gap: 40px; margin: 25px 0; color: #94a3b8; }
+        .company-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; color: var(--white); }
         
-        @media (max-width: 850px) {
+        @media (max-width: 950px) {
             .tech-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.2rem; }
+            section { padding: 30px; }
         }
     </style>
 </head>
@@ -204,15 +227,15 @@
 </header>
 
 <div class="hero">
-    <div style="margin-bottom: 25px;">
-        <img src="cedrat.png" alt="Cedrat Technologies" style="max-width: 280px; height: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+    <div style="margin-bottom: 30px;">
+        <img src="cedrat.png" alt="Cedrat Technologies" style="max-width: 300px; height: auto; filter: brightness(0) invert(1);">
     </div>
 
     <span class="tag">INDUSTRY REPORT 2026</span>
-    <h1>深宇宙と地上を結ぶ「一筋の光」を固定せよ<br>Cedratが実現する宇宙用高精度FSMと超高速ステアリング</h1>
+    <h1>深宇宙と地上を結ぶ「一筋の光」を固定せよ<br>高精度FSMと超高速ステアリングの到達点</h1>
     
     <div class="summary-tags">
-        <span class="tag"><i class="fas fa-rocket"></i> 耐宇宙環境 (Space Qualified)</span>
+        <span class="tag"><i class="fas fa-rocket"></i> 耐宇宙環境 Qualified</span>
         <span class="tag"><i class="fas fa-bullseye"></i> 0.1µrad級 指向精度</span>
         <span class="tag"><i class="fas fa-wave-square"></i> 高応答・広帯域駆動</span>
     </div>
@@ -221,73 +244,66 @@
 <div class="container">
     
     <section id="market-analysis">
-  <span class="section-label">01. Market Analysis</span>
-  <h2 class="section-title">市場の現状分析：光通信へのシフトと障壁</h2>
-  <div class="tech-grid">
-    <div class="content-body">
-      <p>現在、宇宙通信および高精度レーザー計測の分野では、従来の電波通信から<strong>「光通信（Free Space Optics）」</strong>へのシフトが急速に進んでいます。しかし、この技術の普及を阻む最大の障壁は、情報の伝送速度そのものではなく、数千キロ先から飛来するレーザーを数マイクロラジアンの精度で捉え続ける<strong>「PAT（Pointing, Acquisition, and Tracking）」機能</strong>の安定性にあります。</p>
-      <p>特に、宇宙デブリ対策や衛星間通信において、プラットフォームの微細な振動や姿勢変化は、通信リンクを瞬時に遮断する致命的なノイズとなります。この課題に対し、ピエゾ素子の変形を拡大する<strong>「APA（Amplified Piezo Actuator）」</strong>や、尺取虫のような挙動で無限のストロークを可能にする<strong>「インチワーム技術」</strong>を組み合わせた精密駆動システムが、現在、世界的な標準となりつつあります。</p>
-    </div>
+        <span class="section-label">01. Market Analysis</span>
+        <h2 class="section-title">市場分析：光通信シフトにおける物理的障壁</h2>
+        <div class="tech-grid">
+            <div class="content-body">
+                <p>現在、宇宙通信および高精度レーザー計測の分野では、従来の電波通信から<strong>「光通信（Free Space Optics）」</strong>へのシフトが急速に進んでいます。しかし、この技術の普及を阻む最大の障壁は、情報の伝送速度ではなく、数千キロ先から飛来するレーザーを数マイクロラジアンの精度で捉え続ける<strong>「PAT（Pointing, Acquisition, and Tracking）」機能</strong>の安定性にあります。</p>
+                <p>宇宙デブリ対策や衛星間通信において、プラットフォームの微細な振動は致命的なノイズとなります。これに対し、ピエゾ素子の変形を拡大する<strong>「APA（Amplified Piezo Actuator）」</strong>は、現在の世界標準ソリューションとして不可欠な存在となっています。</p>
+            </div>
 
-    <div class="image-box">
-      <input type="checkbox" id="zoom-fsm" class="zoom-check">
-      <label for="zoom-fsm">
-        <img src="fsm.png" alt="PAT System Architecture">
-      </label>
-      <div class="caption">図1：遠距離レーザー通信におけるPAT機能の概念図（クリックで拡大）</div>
-    </div>
-  </div>
-</section>
+            <div class="image-box">
+                <img src="fsm.png" alt="PAT System Architecture">
+                <div class="caption">図1：遠距離レーザー通信におけるPAT機能の概念図（マウスを重ねて拡大）</div>
+            </div>
+        </div>
+    </section>
 
-   <section id="challenges">
-  <span class="section-label">02. Critical Challenges</span>
-  <h2 class="section-title">浮かび上がる「静かなる課題」：熱変位とジッター</h2>
-  
-  <div class="highlight-card">
-    <h3>エンジニアが見落としがちな物理的限界</h3>
-    <p>多くのシステム設計において、センサーやレーザー光源のスペックは重視されますが、それらを搭載する「ミラー」や「駆動機構」の熱膨張係数や剛性不足が、最終的な精度低下を招いています。特に<strong>SiC（炭化ケイ素）</strong>のような高剛性・低熱膨張素材をミラーに採用し、それをいかにサブマイクロ単位で制御するかという視点は、まだ多くの企業で後回しにされています。</p>
-  </div>
-  
-  <div class="tech-grid">
-    <div class="image-box">
-      <input type="checkbox" id="zoom-fsm2" class="zoom-check">
-      <label for="zoom-fsm2">
-        <img src="fsm2.png" alt="Thermal Drift Analysis">
-      </label>
-      <div class="caption">図2：温度変化に伴う光軸ドリフトのシミュレーション（クリックで拡大）</div>
-    </div>
-    
-    <div class="content-body">
-      <p>「通信が繋がらない」原因の多くは、実はソフトウェアのバグではなく、<strong>物理駆動系における極めて微小なドリフト（漂流）</strong>にあります。微細な機械的ジッターは長距離照射において増幅され、ターゲットへの到達精度を劇的に悪化させます。この事実に、業界は早急に目を向ける必要があります。</p>
-    </div>
-  </div>
-</section>
+    <section id="challenges">
+        <span class="section-label">02. Critical Challenges</span>
+        <h2 class="section-title">静かなる課題：熱変位とジッターの相関</h2>
+        
+        <div class="highlight-card">
+            <h3>エンジニアが見落としがちな物理的限界</h3>
+            <p>センサーのスペックは重視されますが、それらを駆動する機構の剛性不足が精度低下を招いています。特に<strong>SiC（炭化ケイ素）</strong>のような高剛性素材をいかにサブマイクロ単位で制御するかという視点が、次世代設計の鍵となります。</p>
+        </div>
+        
+        <div class="tech-grid">
+            <div class="image-box">
+                <img src="fsm2.png" alt="Thermal Drift Analysis">
+                <div class="caption">図2：温度変化に伴う光軸ドリフトのシミュレーション（マウスを重ねて拡大）</div>
+            </div>
+            
+            <div class="content-body">
+                <p>「通信が繋がらない」原因の多くは、実はソフトウェアではなく、<strong>物理駆動系における微小なドリフト</strong>にあります。長距離照射においてこのジッターは増幅され、ターゲット到達精度を劇的に悪化させます。この物理的特性への理解が、今まさに求められています。</p>
+            </div>
+        </div>
+    </section>
 
     <section id="strategy">
         <span class="section-label">03. Future Strategy</span>
-        <h2 class="section-title">202X年の展望と対策：戦略的アプローチ</h2>
-        <p>今後、高精度駆動技術は、宇宙・防衛のみならず、自動運転車のLiDAR制御や、次世代半導体製造装置の高速加工といった産業領域へも急速に波及します。技術者が注視すべき戦略的アプローチは以下の3点です。</p>
+        <h2 class="section-title">202X年の展望：精密駆動の戦略的アプローチ</h2>
         
         <div class="strategy-list">
             <div class="strategy-item">
-                <div class="strategy-num">1</div>
+                <div class="strategy-num">01</div>
                 <div>
                     <strong>ハイブリッド駆動の導入</strong>
-                    <p>超高速・短ストロークの「ピエゾ」と、広範囲をカバーする「磁気方式」を組み合わせ、状況に応じて使い分けるアーキテクチャへの転換。これにより、広範囲の追尾からピンポイントのロックオンまでをシームレスに行うことが可能になります。</p>
+                    <p>超高速・短ストロークの「ピエゾ」と、広範囲をカバーする「磁気方式」を組み合わせたハイブリッド・アーキテクチャへの転換が加速します。</p>
                 </div>
             </div>
             <div class="strategy-item">
-                <div class="strategy-num">2</div>
+                <div class="strategy-num">02</div>
                 <div>
-                    <strong>素材と制御の統合</strong>
-                    <p>ミラー素材にSiCを採用し、熱的安定性を担保した上で、フィードバック制御を高度化させる。物理的な限界を素材で補い、制御で追い込むという「ハードウェア・イン・ザ・ループ」の思想が不可欠となります。</p>
+                    <strong>素材と制御の高度な統合</strong>
+                    <p>SiCミラーの採用と高度なフィードバック制御を組み合わせた「ハードウェア・イン・ザ・ループ」の思想が、開発のデファクトスタンダードとなります。</p>
                 </div>
             </div>
             <div class="strategy-item">
-                <div class="strategy-num">3</div>
+                <div class="strategy-num">03</div>
                 <div>
-                    <strong>モジュール化による開発負荷の低減</strong>
-                    <p>複雑な光軸安定化機構を個別にゼロから設計するのではなく、実績のある精密駆動モジュールを組み込むことで、市場投入までの期間を短縮する。差別化は機構設計そのものではなく、その「統合精度」に移行しています。</p>
+                    <strong>モジュール化による開発加速</strong>
+                    <p>差別化のポイントは機構設計そのものではなく、実績のあるモジュールをいかに素早く「統合・最適化」するかに移行しています。</p>
                 </div>
             </div>
         </div>
@@ -297,26 +313,26 @@
 
 <footer>
     <div class="footer-content">
-        <img src="logo.png" alt="CHRONIX" style="height: 60px; margin-bottom: 25px; filter: brightness(1.5);">
-        <p style="font-size: 1.2rem; color: #fff; font-weight: 300; max-width: 700px; margin: 0 auto;">
-            センサーのポテンシャルを100%引き出す精密光学系との統合設計をサポートします。
+        <img src="logo.png" alt="CHRONIX" style="height: 55px; margin-bottom: 30px; filter: brightness(0) invert(1);">
+        <p style="font-size: 1.2rem; color: #cbd5e1; font-weight: 300; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+            センサーのポテンシャルを100%引き出す<br>精密光学系との統合設計をサポートします。
         </p>
         
         <a href="mailto:sales@chronix.co.jp" class="btn-contact">
-            <i class="fas fa-envelope"></i> 技術相談窓口へ問い合わせる
+            <i class="fas fa-paper-plane"></i> 技術相談窓口へ問い合わせる
         </a>
 
         <div class="footer-info">
             <p class="company-name">クロニクス株式会社</p>
-            <address class="footer-address" style="font-style: normal; color: #cbd5e1;">
+            <address style="font-style: normal; color: #64748b; font-size: 0.95rem;">
                 <p>〒160-0023 東京都新宿区西新宿3-2-11 新宿三井ビルディング二号館 904室</p>
                 <div class="contact-grid">
-                    <p><strong>TEL</strong> 03-5322-7191</p>
-                    <p><strong>FAX</strong> 03-5322-7790</p>
+                    <span><strong style="color: #94a3b8;">TEL</strong> 03-5322-7191</span>
+                    <span><strong style="color: #94a3b8;">FAX</strong> 03-5322-7790</span>
                 </div>
             </address>
         </div>
-        <p style="margin-top: 50px; font-size: 0.8rem; color: #64748b;">© 2026 CHRONIX. All Rights Reserved.</p>
+        <p style="margin-top: 50px; font-size: 0.75rem; color: #475569; letter-spacing: 1px;">© 2026 CHRONIX. All Rights Reserved.</p>
     </div>
 </footer>
 
