@@ -239,23 +239,29 @@
   </div>
 </section>
 
-    <section id="challenges">
-        <span class="section-label">02. Critical Challenges</span>
-        <h2 class="section-title">浮かび上がる「静かなる課題」：熱変位とジッター</h2>
-        <div class="highlight-card">
-            <h3>エンジニアが見落としがちな物理的限界</h3>
-            <p>多くのシステム設計において、センサーやレーザー光源のスペックは重視されますが、それらを搭載する「ミラー」や「駆動機構」の熱膨張係数や剛性不足が、最終的な精度低下を招いています。特に<strong>SiC（炭化ケイ素）</strong>のような高剛性・低熱膨張素材をミラーに採用し、それをいかにサブマイクロ単位で制御するかという視点は、まだ多くの企業で後回しにされています。</p>
-        </div>
-        <div class="tech-grid">
-            <div class="image-box">
-                <img src="fsm2.png" alt="Thermal Drift Analysis">
-                <div class="caption">図2：温度変化に伴う光軸ドリフトのシミュレーション</div>
-            </div>
-            <div class="content-body">
-                <p>「通信が繋がらない」原因の多くは、実はソフトウェアのバグではなく、<strong>物理駆動系における極めて微小なドリフト（漂流）</strong>にあります。微細な機械的ジッターは長距離照射において増幅され、ターゲットへの到達精度を劇的に悪化させます。この事実に、業界は早急に目を向ける必要があります。</p>
-            </div>
-        </div>
-    </section>
+   <section id="challenges">
+  <span class="section-label">02. Critical Challenges</span>
+  <h2 class="section-title">浮かび上がる「静かなる課題」：熱変位とジッター</h2>
+  
+  <div class="highlight-card">
+    <h3>エンジニアが見落としがちな物理的限界</h3>
+    <p>多くのシステム設計において、センサーやレーザー光源のスペックは重視されますが、それらを搭載する「ミラー」や「駆動機構」の熱膨張係数や剛性不足が、最終的な精度低下を招いています。特に<strong>SiC（炭化ケイ素）</strong>のような高剛性・低熱膨張素材をミラーに採用し、それをいかにサブマイクロ単位で制御するかという視点は、まだ多くの企業で後回しにされています。</p>
+  </div>
+  
+  <div class="tech-grid">
+    <div class="image-box">
+      <input type="checkbox" id="zoom-fsm2" class="zoom-check">
+      <label for="zoom-fsm2">
+        <img src="fsm2.png" alt="Thermal Drift Analysis">
+      </label>
+      <div class="caption">図2：温度変化に伴う光軸ドリフトのシミュレーション（クリックで拡大）</div>
+    </div>
+    
+    <div class="content-body">
+      <p>「通信が繋がらない」原因の多くは、実はソフトウェアのバグではなく、<strong>物理駆動系における極めて微小なドリフト（漂流）</strong>にあります。微細な機械的ジッターは長距離照射において増幅され、ターゲットへの到達精度を劇的に悪化させます。この事実に、業界は早急に目を向ける必要があります。</p>
+    </div>
+  </div>
+</section>
 
     <section id="strategy">
         <span class="section-label">03. Future Strategy</span>
